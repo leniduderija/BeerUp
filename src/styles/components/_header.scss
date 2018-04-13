@@ -1,0 +1,97 @@
+$menu-link-color: $white;
+$menu-icon-color: $white;
+$border-color: $yellow;
+
+header {
+    color: $white !important;    
+
+    .navigation-bar {
+
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 2.4px;
+        line-height: 14px;
+        text-align: center;
+        
+        .logo-link {
+            padding: 10px;
+            display: inline-block;
+
+            img {
+                margin-right: 5px;
+            }
+
+            &:hover {
+                border: none;
+            }
+        }
+
+        .nav-links {
+            display: inline-block;
+            margin: 0;
+            padding: 10px;
+
+            li {
+                display: inline-block;
+                padding: 10px;
+
+                &.join {
+                    text-transform: uppercase;
+                    border: 3px solid $border-color;
+                    border-radius: 34px;
+                    padding: 20px;
+
+                    &:hover {
+                        color: $white;
+                        background: $yellow;                        
+                    }
+                    a {
+                        padding: 20px;
+                    }
+                    a:hover {
+                        border: none;
+                    }
+                }
+
+                a {
+                    color: $menu-link-color;
+                    padding: 10px;
+                }
+            }
+        }
+    }
+
+    .header-content {
+        width: 50%;
+        padding-top: 90px;
+
+        .header-title {
+            font-weight: bold;
+            text-transform: uppercase;
+
+            &.small-title {
+                line-height: 17px;
+            }
+            &.big-title {
+                font-size: 90px;
+                line-height: 90px;
+            }
+            &.join-link {
+                color: $headerBlack;
+                font-size: 12px;
+                letter-spacing: 2.4px;
+                line-height: 14px;
+                padding: 17px 30px;
+                border-radius: 50px;
+                background: $yellow;
+                background: 3px solid $yellow;
+
+                &:hover {
+                    background-color: rgba($yellow, .5);
+                }
+            }
+        }
+    }
+
+}
+

@@ -1,0 +1,186 @@
+@import '../../styles/utilities/variables';
+
+*, *:after, *:before{
+  box-sizing: border-box;
+}
+
+html{
+  font-size: 62.5%;
+}
+
+body{
+  height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  font: normal 1.6rem/1.5 'Montserrat', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: $black;
+  background-color: $page-black;
+
+  &.page-body {
+    background-color: #000;
+    background-image: url('./assets/img/pattern.png');  
+  }
+
+  @include breakpoint(880){
+    padding: 50px 0 0;
+
+    &.page-login,
+    &.page-home,
+    &.page-google,
+    &.page-google-results,
+    &.page-index{
+      padding: 0;
+    }
+  }
+}
+.page {
+  background-image: url('./assets/img/pattern.png');
+  background-size: cover;
+}
+
+h1{
+  font-weight: 400;
+  font-size: 4.1rem;
+
+  @include breakpoint(640){
+    font-size: 2.7rem;
+  }
+}
+
+h2{
+  color: $blueDark;
+  font-size: 4.5rem;
+  margin: 1.1em 0;
+  line-height: 1.2;
+  font-weight: 300;
+
+  @include breakpoint(640){
+    font-size: 2.4rem;
+    font-weight: 400;
+    margin: 1em 0;
+  }
+  + h3{
+    margin-top: -1em;
+
+    @include breakpoint(640){
+      margin-top: -0.3em;
+    }
+  }
+}
+
+.blue{
+  color: $blue;
+}
+
+h3{
+  font-size: 2.6rem;
+  color: $blueDark;
+  font-weight: 400;
+
+  @include breakpoint(640){
+    font-size: 1.9rem;
+    font-weight: 300;
+    margin: .7em 0;
+  }
+}
+
+h6{
+  font-size: 2.2rem;
+  font-weight: 300;
+}
+
+p{
+  margin: 1.7em 0;
+
+  @include breakpoint(640){
+    margin: 1.2em 0;
+  }
+}
+
+a{
+  text-decoration: none;
+  color: $highlight;
+
+  &:hover{
+    color: $white;
+    border-bottom: 1px solid $highlightOver;
+  }
+  &.no-underline:hover{
+    text-decoration: none;
+  }
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #d7d7d7;
+}
+
+.clearfix:before,
+.clearfix:after{ content: " "; display: table; }
+.clearfix:after{ clear: both; }
+.clearfix{ *zoom: 1; }
+
+.center{
+  text-align: center;
+}
+
+.plain-list{
+  list-style-type: none;
+  padding: 0;
+
+  li{
+    margin: 0 0 15px;
+  }
+}
+
+.pull-left {
+  float: left
+}
+.pull-right {
+  float: right;
+}
+.text-left {
+  text-align: left
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+
+
+.mobile-only-main{
+  display: none;
+
+  @include breakpoint(1200){
+    display: block;
+  }
+}
+.mobile-only{
+  display: none;
+
+  @include breakpoint(640){
+    display: block;
+  }
+}
+.hide-mobile{
+  @include breakpoint(640){
+    display: none;
+  }
+}
+
+@-webkit-keyframes autofill {
+  to {
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
