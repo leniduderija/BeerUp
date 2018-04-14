@@ -4,5 +4,7 @@
 // The list of which env maps to which file can be found in `.angular-cli.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  debugMode: true,
+  backendUrl: 'https://api.punkapi.com/v2'
 };

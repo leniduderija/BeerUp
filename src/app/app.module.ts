@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
+import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 
 
@@ -18,7 +19,8 @@ import { HomeModule } from './home/home.module';
     HttpModule,
     AppRoutingModule,
     LayoutModule,
-    HomeModule
+    HomeModule,
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]
