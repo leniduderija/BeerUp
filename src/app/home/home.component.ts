@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+
+import { PunkapiService } from '../core/punkapi.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  beers: any;
+  errorMessage: string;
+
+  constructor(
+    private _punkapiService: PunkapiService
+  ) { }
 
   ngOnInit() {
+    this.getBeers();
+    
+    console.debug('punkapiservice: ', this._punkapiService.getBeers());
+    console.debug('this.beers: ', this.beers);
+  }
+
+  getBeers() {
+    this._punkapiService.getBeers()
+      .subscribe(
+      value => this.beers = value,
+      error => this.errorMessage = <any>error);
   }
 
 }
