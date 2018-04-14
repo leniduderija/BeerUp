@@ -1,0 +1,38 @@
+<div class="beer-modal-container clearfix">
+
+  <div class="beer-modal-action-buttons clearfix">
+    <span class="icon-button pull-left" (click)="addToFavorites()">
+        <img src="../assets/img/heart outline.png">
+    </span>
+    <span class="icon-button pull-right" (click)="close()">
+        <img src="../assets/img/Close icon.png">
+    </span>
+  </div>
+
+  <div class="beer-modal-content clearfix">
+    <div class="item clearfix">
+      <div class="item-img">
+        <img src="{{image_url}}" alt="{{name}}">
+      </div>
+      <div class="item-content text-left">
+        <h1>
+            {{ name }}
+        </h1>
+        <p>
+          IBU {{ibu}}
+        </p>
+        <p>
+          ABV {{abv}}%
+        </p>
+        <br>
+        <p>
+          {{description}}
+        </p>
+        <span class="icon-button text-center add-to-crate" (click)="addToCrate()">
+            Add to crate
+        </span>
+      </div>
+    </div>
+  </div>
+
+</div>

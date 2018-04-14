@@ -5,7 +5,7 @@
       <div class="item-img">
         <img src="{{beer.image_url}}" alt="{{beer.name}}">
       </div>
-      <div class="item-content">
+      <div class="item-content" (click)="openBeerInfo(beer)">
         <h5>
             {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
         </h5>
@@ -19,5 +19,3 @@
     </div>
   </div>
 </section>
-
-

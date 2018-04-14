@@ -7,10 +7,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 
 import {RouterModule} from '@angular/router';
 
+import {MatDialogModule} from '@angular/material';
+
+
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatDialogModule
   ],
   declarations: [FooterComponent, HeaderComponent, MainComponent, SidebarComponent]
 })

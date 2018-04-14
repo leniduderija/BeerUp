@@ -18,6 +18,10 @@
 @import 'styles/pages/_home';
 
 @import 'styles/modules/_item';
+@import 'styles/components/_modal';
 
 /* You can add global styles to this file, and also import other style files */
 // @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+/* Custom */
+@import 'styles/theme'; // Material theme
