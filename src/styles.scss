@@ -2,6 +2,7 @@
 @import '~normalize.scss/normalize.scss';
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 
 
 /* Custom */
@@ -11,6 +12,7 @@
 @import 'styles/components/_header';
 @import 'styles/components/_footer';
 @import 'styles/components/_page';
+@import 'styles/components/_main';
 
 /* You can add global styles to this file, and also import other style files */
 // @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
