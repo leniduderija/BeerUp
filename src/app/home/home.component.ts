@@ -18,10 +18,9 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.getBeers();
     
-    console.debug('punkapiservice: ', this._punkapiService.getBeers());
-    console.debug('this.beers: ', this.beers);
   }
 
   getBeers() {

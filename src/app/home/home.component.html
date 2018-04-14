@@ -1,7 +1,23 @@
-<div>
-  <ul>
-    <li *ngFor="let beer of beers">
-      {{beer.name}}
-    </li>    
-  </ul>
-</div>
+<section class="items-list-section">
+  <h1 class="section-title">Beer</h1>
+  <div class="items-list clearfix">
+    <div class="item clearfix" *ngFor="let beer of beers">
+      <div class="item-img">
+        <img src="{{beer.image_url}}" alt="{{beer.name}}">
+      </div>
+      <div class="item-content">
+        <h5>
+            {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
+        </h5>
+        <p>
+          IBU {{beer.ibu}}
+        </p>
+        <p>
+          ABV {{beer.abv}}%
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
