@@ -1,8 +1,9 @@
 <div class="beer-modal-container clearfix">
 
   <div class="beer-modal-action-buttons clearfix">
-    <span class="icon-button pull-left" (click)="addToFavorites()">
-        <img src="../assets/img/heart outline.png">
+    <span class="icon-button pull-left">
+        <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!favorite" (click)="addFavorite()">
+        <img src="../assets/img/heart solid.png" alt="Favorite beer" *ngIf="favorite" (click)="removeFavorite()">
     </span>
     <span class="icon-button pull-right" (click)="close()">
         <img src="../assets/img/Close icon.png">

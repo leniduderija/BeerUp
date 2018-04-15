@@ -4,14 +4,12 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatDialogModule } from '@angular/material';
-import { BeerInfoModalComponent } from '../modals/beer-info-modal/beer-info-modal.component';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { PunkapiService } from '../core/punkapi.service';
 
-import { SidebarComponent } from '../layout/sidebar/sidebar.component';
-
+import { ModalsModule } from '../modals/modals.module';
 
 @NgModule({
   bootstrap: [],
@@ -19,9 +17,10 @@ import { SidebarComponent } from '../layout/sidebar/sidebar.component';
     CommonModule,
     HomeRoutingModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ModalsModule
   ],
-  declarations: [HomeComponent, BeerInfoModalComponent, SidebarComponent],
-  entryComponents: [BeerInfoModalComponent]
+  declarations: [HomeComponent],
+  entryComponents: []
 })
 export class HomeModule { }
