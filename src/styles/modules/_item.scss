@@ -9,6 +9,7 @@
     border-radius: 4px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
     cursor: pointer;
+    position: relative;
 
     .item-img {
         width: 30px;
@@ -40,6 +41,18 @@
             font-size: 14px;
             line-height: 26px;
             margin: 0;
+        }
+    }
+
+    .favorite {
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 11.25px;
+        height: 10.5px;
+
+        img {
+            max-width: 100%;
         }
     }
 }
