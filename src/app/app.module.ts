@@ -7,10 +7,14 @@ import { FormsModule } from "@angular/forms";
 
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
+import { ModalsModule } from './modals/modals.module';
 import { CoreModule } from './core/core.module';
 import { HomeModule } from './home/home.module';
 import { JoinModule } from './join/join.module';
+import { FavoritesModule } from './favorites/favorites.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 @NgModule({
@@ -22,9 +26,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     HttpModule,
     AppRoutingModule,
+    ModalsModule,
     LayoutModule,
     HomeModule,
     JoinModule,
+    FavoritesModule,
     CoreModule
   ],
   providers: [],
