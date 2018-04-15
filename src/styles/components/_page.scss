@@ -2,7 +2,6 @@
     width: 1130px;
     margin: 0 auto;
     padding: 10px 0;
-    
 }
 .main-content {
     background: $mainBakcgroundWhite;
@@ -10,6 +9,10 @@
 main {
     width: 768px;
     float: left;
+
+    &.without-sidebar {
+        width: 100%;
+    }
 }
 aside {
     width: 362px;

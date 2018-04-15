@@ -1,21 +1,35 @@
-<section class="items-list-section">
-  <h1 class="section-title">Beer</h1>
-  <div class="items-list clearfix">
-    <div class="item clearfix" *ngFor="let beer of beers">
-      <div class="item-img">
-        <img src="{{beer.image_url}}" alt="{{beer.name}}">
-      </div>
-      <div class="item-content" (click)="openBeerInfo(beer)">
-        <h5>
-            {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
-        </h5>
-        <p>
-          IBU {{beer.ibu}}
-        </p>
-        <p>
-          ABV {{beer.abv}}%
-        </p>
-      </div>
+<main>
+    <div class="clearfix">
+        <div class="content">
+            <section class="items-list-section">
+              <h1 class="section-title">Beer</h1>
+              <div class="items-list clearfix">
+                <div class="item clearfix" *ngFor="let beer of beers">
+                  <div class="item-img">
+                    <img src="{{beer.image_url}}" alt="{{beer.name}}">
+                  </div>
+                  <div class="item-content" (click)="openBeerInfo(beer)">
+                    <h5>
+                        {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
+                    </h5>
+                    <p>
+                      IBU {{beer.ibu}}
+                    </p>
+                    <p>
+                      ABV {{beer.abv}}%
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+        </div> 
     </div>
-  </div>
-</section>
+</main>
+<aside>
+    <div class="sidebar-container">
+        <!-- <router-outlet  name="sidebar"></router-outlet> -->
+        <beerup-sidebar></beerup-sidebar>
+    </div> 
+</aside>    
+
+

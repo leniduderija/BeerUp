@@ -9,10 +9,8 @@ import { BeerInfoModalComponent } from '../modals/beer-info-modal/beer-info-moda
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
 import { PunkapiService } from '../core/punkapi.service';
-// import { SidebarComponent } from './sidebar/sidebar.component';
 
-
-
+import { SidebarComponent } from '../layout/sidebar/sidebar.component';
 
 
 @NgModule({
@@ -23,7 +21,7 @@ import { PunkapiService } from '../core/punkapi.service';
     BrowserAnimationsModule,
     MatDialogModule
   ],
-  declarations: [HomeComponent, BeerInfoModalComponent],
+  declarations: [HomeComponent, BeerInfoModalComponent, SidebarComponent],
   entryComponents: [BeerInfoModalComponent]
 })
 export class HomeModule { }
