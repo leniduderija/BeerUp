@@ -14,11 +14,18 @@ import { BeerInfoModalComponent } from '../modals/beer-info-modal/beer-info-moda
 })
 export class HomeComponent implements OnInit {
 
+  currentPage: number = 1;
+  perPage: number = 15;
+
   beers: any = [];
   errorMessage: string;
   favorite = false;
   favorites: any[] = JSON.parse(localStorage.getItem('favorites')) || [];
   
+  throttle:number = 300;
+  scrollDistance:number = 1;
+  dataStatus:boolean = true;
+
 
   constructor(
     private _punkapiService: PunkapiService,
@@ -28,15 +35,24 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getBeers();
+    this.getBeers(this.currentPage, this.perPage);
     
   }
 
-  getBeers() {
-    this._punkapiService.getBeers()
+  onScrollDown() {
+    if(this.dataStatus == true){
+      this.currentPage++;
+      this.getBeers(this.currentPage, this.perPage);
+    }
+  }
+
+
+  getBeers(currentPage:number, perPage:number) {
+    this._punkapiService.getBeers(this.currentPage, this.perPage)
       .subscribe(
-      value => {        
-        this.beers = value;
+      value => {
+        this.beers = this.beers.concat(value);
+        // this.beers = value;
         let newBeerArr = [];
         this.beers.map(beer => {
           let checkFavorite = this.favorites.filter(favorite => { return favorite.id === beer.id; }).length;
@@ -47,7 +63,9 @@ export class HomeComponent implements OnInit {
           }
         });
       },
-      error => this.errorMessage = <any>error);
+      error => {
+        this.dataStatus = false;
+        this.errorMessage = <any>error});
   }
 
   openBeerInfo(beer) {

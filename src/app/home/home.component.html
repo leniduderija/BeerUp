@@ -3,7 +3,12 @@
         <div class="content">
             <section class="items-list-section">
               <h1 class="section-title">Beer</h1>
-              <div class="items-list clearfix" *ngIf="beers != undefined && beers.length">
+              <div class="items-list clearfix" 
+                *ngIf="beers != undefined && beers.length"
+                infinite-scroll
+                [infiniteScrollDistance]="scrollDistance"
+                [infiniteScrollThrottle]="throttle"
+                (scrolled)="onScrollDown()">
                 <div class="item clearfix" *ngFor="let beer of beers">
                   <div class="favorite">
                     <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!beer.favorite" (click)="toggleFavorite(beer)">

@@ -11,10 +11,13 @@ import { PunkapiService } from '../core/punkapi.service';
 
 import { ModalsModule } from '../modals/modals.module';
 
+import { InfiniteScrollModule } from 'angular2-infinite-scroll';
+
 @NgModule({
   bootstrap: [],
   imports: [
     CommonModule,
+    InfiniteScrollModule,
     HomeRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
