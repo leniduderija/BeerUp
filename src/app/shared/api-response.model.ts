@@ -21,3 +21,8 @@ export class ApiResponseBase {
 export class ApiResponse<T> extends ApiResponseBase {
   public body: T;
 }
+export class PunkapiResponseMessage {
+  public error: string;
+  public message: string;
+  public statusCode: number;
+}

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import { ApiResponse } from '../shared/api-response.model';
+import { ApiResponse, PunkapiResponseMessage  } from '../shared/api-response.model';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
@@ -34,9 +34,9 @@ export class PunkapiService {
     .catch(this.handleError);
   }
 
-  private handleError(error: Response) {
+  private handleError(error: PunkapiResponseMessage) {
     console.error(error);
-    return Observable.throw(error.json() || 'Server error');
+    return Observable.throw(error.error || 'Server error');
   }
 
 }
