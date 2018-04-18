@@ -1,3 +1,12 @@
-<p>
-  sidebar works!
-</p>
+<h1 class="section-title">Crate</h1>
+<!-- <ul class="tab-nav">
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+</ul> -->
+
+<div class="crate__container clearfix">  
+  <div class="crate__spot" *ngFor="let item of crate; let i = index">
+    <div class="crate__item" [ngClass]="getClassByValue(item)"></div>
+  </div>
+</div>
