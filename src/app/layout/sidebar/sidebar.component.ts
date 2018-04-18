@@ -34,7 +34,6 @@ export class SidebarComponent implements OnInit {
     } else if(beer.crateClass == 'second'){
       return 'second';
     }
-    debugger;
   }
 
   
