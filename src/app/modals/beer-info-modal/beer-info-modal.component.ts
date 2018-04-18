@@ -18,6 +18,7 @@ export class BeerInfoModalComponent {
   description:string;
   favorite:boolean;
   alreadyInCrate:boolean = false;
+  unableToAddToCrate:boolean = false;
   favorites;
   data;
 
@@ -59,20 +60,25 @@ export class BeerInfoModalComponent {
   
   addToCrate(data){
     console.debug('addToCrate beer: ', data);
-    let randClass = this.crateClasses[Math.floor(Math.random()*this.crateClasses.length)];
-    data.crateClass = randClass;
-
-    delete data.favorites;
-    this.crate.push(data);
-    this.alreadyInCrate = true;
-    this.storageService.setItem('crate', JSON.stringify(this.crate));
+    
+    if(this.crate.length < 20){
+      let randClass = this.crateClasses[Math.floor(Math.random()*this.crateClasses.length)];
+      data.crateClass = randClass;
+      delete data.favorites;
+      this.crate.push(data);
+      this.alreadyInCrate = true;
+      this.storageService.setItem('crate', JSON.stringify(this.crate));
+    } else {
+      this.unableToAddToCrate = true;
+    }
+    
     
   }
 
   removeFromCrate(data){
     console.debug('removeFromCrate beer: ', data);
 
-    let index = this.crate.indexOf(data.id);
+    let index = this.crate.map(function(e) { return e.id; }).indexOf(data.id);
     this.crate.splice(index, 1);
     this.alreadyInCrate = false;
     this.storageService.setItem('crate', JSON.stringify(this.crate));

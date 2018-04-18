@@ -35,6 +35,10 @@
         <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == true" (click)="removeFromCrate(data)">
             Remove from crate
         </span>
+        <div *ngIf="unableToAddToCrate"
+            class="alert alert-danger">
+          Crate is full!
+        </div>
       </div>
     </div>
   </div>
