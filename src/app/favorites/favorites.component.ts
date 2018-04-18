@@ -16,6 +16,8 @@ export class FavoritesComponent implements OnInit {
   favorites: any[] = JSON.parse(localStorage.getItem('favorites')) || [];
   beers: any = this.favorites;
 
+  selectedSort: string = 'name';
+
   constructor(
     private dialog: MatDialog
   ) { }
@@ -31,6 +33,7 @@ export class FavoritesComponent implements OnInit {
     if(!this.favorites.length){
       this.errorMessage = 'No favorite beers!';      
     }
+    this.sortByProperty(this.selectedSort);
   }
 
   openBeerInfo(beer) {
@@ -75,6 +78,15 @@ export class FavoritesComponent implements OnInit {
       beer.favorite = true;
     }
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  }
+
+  sortByProperty(prop){
+    this.selectedSort = prop;
+    this.beers.sort((a, b) => {
+      if (a[prop] < b[prop]) return -1;
+      else if (a[prop] > b[prop]) return 1;
+      else return 0;
+    });
   }
 
 

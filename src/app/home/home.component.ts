@@ -21,6 +21,8 @@ export class HomeComponent implements OnInit {
   errorMessage: string;
   favorite = false;
   favorites: any[] = JSON.parse(localStorage.getItem('favorites')) || [];
+
+  selectedSort: string = 'name';
   
   throttle:number = 300;
   scrollDistance:number = 1;
@@ -42,7 +44,7 @@ export class HomeComponent implements OnInit {
   onScrollDown() {
     if(this.dataStatus == true){
       this.currentPage++;
-      this.getBeers(this.currentPage, this.perPage);
+      this.getBeers(this.currentPage, this.perPage);      
     }
   }
 
@@ -62,6 +64,7 @@ export class HomeComponent implements OnInit {
             beer.favorite = false;
           }
         });
+        this.sortByProperty(this.selectedSort);
       },
       error => {
         this.dataStatus = false;
@@ -87,7 +90,7 @@ export class HomeComponent implements OnInit {
     const dialogRef = this.dialog.open(BeerInfoModalComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => { 
-      
+
     });
 
   }
@@ -106,6 +109,15 @@ export class HomeComponent implements OnInit {
       beer.favorite = true;
     }    
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
+  }
+
+  sortByProperty(prop){
+    this.selectedSort = prop;
+    this.beers.sort((a, b) => {
+      if (a[prop] < b[prop]) return -1;
+      else if (a[prop] > b[prop]) return 1;
+      else return 0;
+    });
   }
 
 }
