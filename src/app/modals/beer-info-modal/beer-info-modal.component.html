@@ -2,8 +2,8 @@
 
   <div class="beer-modal-action-buttons clearfix">
     <span class="icon-button pull-left">
-        <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!favorite" (click)="addFavorite()">
-        <img src="../assets/img/heart solid.png" alt="Favorite beer" *ngIf="favorite" (click)="removeFavorite()">
+        <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!favorite" (click)="addFavorite(data)">
+        <img src="../assets/img/heart solid.png" alt="Favorite beer" *ngIf="favorite" (click)="removeFavorite(data)">
     </span>
     <span class="icon-button pull-right" (click)="close()">
         <img src="../assets/img/Close icon.png">
@@ -29,8 +29,11 @@
         <p>
           {{description}}
         </p>
-        <span class="icon-button text-center add-to-crate" (click)="addToCrate()">
+        <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == false" (click)="addToCrate(data)">
             Add to crate
+        </span>
+        <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == true" (click)="removeFromCrate(data)">
+            Remove from crate
         </span>
       </div>
     </div>

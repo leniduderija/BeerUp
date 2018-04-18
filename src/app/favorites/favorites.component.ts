@@ -53,14 +53,7 @@ export class FavoritesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      if(result.favoriteBtnClicked == true){
-        var beerIndex = this.beers.map(function(x) {return x.id; }).indexOf(result.id);
-        var beer = this.beers[beerIndex];
-        delete beer.favorites;
-        if(beer.favorite != result.favorite){
-          this.toggleFavorite(beer);
-        }
-      }
+      this.getBeers();
 
     });
 
@@ -71,13 +64,16 @@ export class FavoritesComponent implements OnInit {
     let alreadyFavorite = beer.favorite == true;
 
     if (alreadyFavorite) {
-      let index = this.favorites.indexOf(beer.id);
+      let index = this.favorites.map(function(e) { return e.id; }).indexOf(beer.id);
       this.favorites.splice(index, 1);
       beer.favorite = false;
+      if(this.favorites.length == 0){
+        this.getBeers();
+      }
     } else {
       this.favorites.push(beer);
       beer.favorite = true;
-    }    
+    }
     localStorage.setItem('favorites', JSON.stringify(this.favorites));
   }
 

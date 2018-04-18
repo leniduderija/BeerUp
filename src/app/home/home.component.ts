@@ -65,7 +65,7 @@ export class HomeComponent implements OnInit {
       },
       error => {
         this.dataStatus = false;
-        this.errorMessage = <any>error});
+        this.errorMessage = <any>error.error});
   }
 
   openBeerInfo(beer) {
@@ -86,17 +86,8 @@ export class HomeComponent implements OnInit {
 
     const dialogRef = this.dialog.open(BeerInfoModalComponent, dialogConfig);
 
-    dialogRef.afterClosed().subscribe(result => {
-
-      if(result.favoriteBtnClicked == true){
-        var beerIndex = this.beers.map(function(x) {return x.id; }).indexOf(result.id);
-        var beer = this.beers[beerIndex];
-        delete beer.favorites;
-        if(beer.favorite != result.favorite){
-          this.toggleFavorite(beer);
-        }
-      }
-
+    dialogRef.afterClosed().subscribe(result => { 
+      
     });
 
   }
@@ -106,10 +97,11 @@ export class HomeComponent implements OnInit {
     let alreadyFavorite = beer.favorite == true;
 
     if (alreadyFavorite) {
-      let index = this.favorites.indexOf(beer.id);
+      let index = this.favorites.map(function(e) { return e.id; }).indexOf(beer.id);
       this.favorites.splice(index, 1);
       beer.favorite = false;
     } else {
+      delete beer.favorites;
       this.favorites.push(beer);
       beer.favorite = true;
     }    
