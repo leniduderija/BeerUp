@@ -5,6 +5,7 @@ import { requestOptionsProvider } from './default-request-options';
 import { AlertService } from './alert.service';
 import { PunkapiService } from './punkapi.service';
 import { UserService } from './user.service';
+import { LocalStorageService } from './localStorage.service';
 import { FakeBackendInterceptor } from './helpers/fake-backend';
 import { AlertComponent } from './directives/alert/alert.component';
 
@@ -19,6 +20,7 @@ import { AlertComponent } from './directives/alert/alert.component';
     AlertService,
     PunkapiService,
     UserService,
+    LocalStorageService,
     FakeBackendInterceptor
   ]
 })
