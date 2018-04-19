@@ -1,12 +1,24 @@
 <h1 class="section-title">Crate</h1>
-<!-- <ul class="tab-nav">
-  <li>One</li>
-  <li>Two</li>
-  <li>Three</li>
-</ul> -->
+<ul class="tab-nav">
+  <li><a href="javascript:void(0)" (click)="changeCrate(1)">One</a></li>
+  <li><a href="javascript:void(0)" (click)="changeCrate(2)">Two</a></li>
+  <li><a href="javascript:void(0)" (click)="changeCrate(3)">Three</a></li>
+</ul>
 
-<div class="crate__container clearfix">  
-  <div class="crate__spot" *ngFor="let item of crate; let i = index">
+<div *ngIf="activeCrate == 1" class="crate__container clearfix">
+  <div class="crate__spot" *ngFor="let item of crate1; let i = index">
     <div class="crate__item" [ngClass]="getClassByValue(item)"></div>
   </div>
 </div>
+
+<div *ngIf="activeCrate == 2" class="crate__container clearfix">
+  <div class="crate__spot" *ngFor="let item of crate2; let i = index">
+    <div class="crate__item" [ngClass]="getClassByValue(item)"></div>
+  </div>
+</div>
+
+  <div *ngIf="activeCrate == 3" class="crate__container clearfix">
+    <div class="crate__spot" *ngFor="let item of crate3; let i = index">
+      <div class="crate__item" [ngClass]="getClassByValue(item)"></div>
+    </div>
+  </div>

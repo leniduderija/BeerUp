@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 
 import { LocalStorageService } from '../../core/localStorage.service';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'beerup-sidebar',
@@ -11,20 +12,22 @@ import { LocalStorageService } from '../../core/localStorage.service';
 })
 export class SidebarComponent implements OnInit {
 
-  Arr = Array; //Array type captured in a variable
-  num:number = 20;
-
-  crate: any[] = JSON.parse(localStorage.getItem('crate')) || [];
+  crate1: any[] = JSON.parse(localStorage.getItem('crate1')) || [];
+  crate2: any[] = JSON.parse(localStorage.getItem('crate2')) || [];
+  crate3: any[] = JSON.parse(localStorage.getItem('crate3')) || [];
+  activeCrate: number;
   
 
   constructor(
-    private storageService: LocalStorageService
+    private _storageService: LocalStorageService,
+    private _userService: UserService
   ) { }
 
   ngOnInit() {
-    this.storageService.watchStorage().subscribe((data:any) => {
-      this.crate = JSON.parse(localStorage.getItem('crate')) || [];
-
+    this.activeCrate = this._userService.getActiveCrate();
+    
+    this._storageService.watchStorage().subscribe((data:any) => {
+      this['crate' + this.activeCrate] = JSON.parse(localStorage.getItem('crate'+this.activeCrate)) || [];
     });
   }
 
@@ -34,6 +37,10 @@ export class SidebarComponent implements OnInit {
     } else if(beer.crateClass == 'second'){
       return 'second';
     }
+  }
+
+  changeCrate(crate_num){
+    this.activeCrate = this._userService.setActiveCrate(crate_num);
   }
 
   

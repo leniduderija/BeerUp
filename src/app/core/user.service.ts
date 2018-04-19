@@ -18,6 +18,8 @@ export class UserService {
 
   private backendBaseUrl: string;
 
+  activeCrate: number = 1;
+
   constructor(private http: HttpClient) {
     this.backendBaseUrl = environment.backendUrl;
   }
@@ -32,6 +34,15 @@ export class UserService {
     {
       headers: headers
     });
+  }
+
+  getActiveCrate(){
+    return this.activeCrate;
+  }
+
+  setActiveCrate(num){
+      this.activeCrate = num;
+      return this.activeCrate; 
   }
 
 }

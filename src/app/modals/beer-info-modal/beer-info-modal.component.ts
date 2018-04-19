@@ -2,6 +2,7 @@ import { Inject, Component, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 import { LocalStorageService } from '../../core/localStorage.service';
+import { UserService } from '../../core/user.service';
 
 @Component({
   selector: 'app-beer-info-modal',
@@ -21,14 +22,21 @@ export class BeerInfoModalComponent {
   unableToAddToCrate:boolean = false;
   favorites;
   data;
+  activeCrate: number;
 
-  crate: any[] = JSON.parse(localStorage.getItem('crate')) || [];
+  crate1: any[] = JSON.parse(localStorage.getItem('crate1')) || [];
+  crate2: any[] = JSON.parse(localStorage.getItem('crate2')) || [];
+  crate3: any[] = JSON.parse(localStorage.getItem('crate3')) || [];
+
   crateClasses: any[] = ['first', 'second'];
 
   constructor(
         private dialogRef: MatDialogRef<BeerInfoModalComponent>,
         private storageService: LocalStorageService,
+        private _userService: UserService,
         @Inject(MAT_DIALOG_DATA) data) {
+
+        this.activeCrate = this._userService.getActiveCrate();
 
         this.data = data;
         
@@ -42,6 +50,7 @@ export class BeerInfoModalComponent {
         this.favorites = data.favorites;
 
         this.checkIfInCrate(data);
+        
     }
 
   close() {
@@ -49,7 +58,10 @@ export class BeerInfoModalComponent {
   }
 
   checkIfInCrate(data){
-    let index = this.crate.map(function(e) { return e.id; }).indexOf(data.id);
+
+    let active = this['crate' + this.activeCrate];
+    let index = active.map(function(e) { return e.id; }).indexOf(data.id);
+    this['crate' + this.activeCrate] = JSON.parse(localStorage.getItem('crate' + this.activeCrate)) || [];
     
     if(index == -1){
       this.alreadyInCrate = false;
@@ -59,29 +71,30 @@ export class BeerInfoModalComponent {
   }
   
   addToCrate(data){
-    console.debug('addToCrate beer: ', data);
+    console.debug('addToCrate beer: ', data);    
     
-    if(this.crate.length < 20){
+    if(this['crate' + this.activeCrate].length < 20){
       let randClass = this.crateClasses[Math.floor(Math.random()*this.crateClasses.length)];
       data.crateClass = randClass;
       delete data.favorites;
-      this.crate.push(data);
+      this['crate' + this.activeCrate].push(data);
       this.alreadyInCrate = true;
-      this.storageService.setItem('crate', JSON.stringify(this.crate));
+      this.storageService.setItem('crate'+this.activeCrate, JSON.stringify(this['crate' + this.activeCrate]));
     } else {
       this.unableToAddToCrate = true;
     }
-    
-    
   }
 
   removeFromCrate(data){
     console.debug('removeFromCrate beer: ', data);
 
-    let index = this.crate.map(function(e) { return e.id; }).indexOf(data.id);
-    this.crate.splice(index, 1);
+    this.activeCrate = this._userService.getActiveCrate();
+
+    let index = this['crate' + this.activeCrate].map(function(e) { return e.id; }).indexOf(data.id);
+    this['crate' + this.activeCrate].splice(index, 1);
     this.alreadyInCrate = false;
-    this.storageService.setItem('crate', JSON.stringify(this.crate));
+    this.storageService.setItem('crate'+this.activeCrate, JSON.stringify(this['crate' + this.activeCrate]));
+    
   }
 
   addFavorite(data){
