@@ -7,7 +7,7 @@ import { Subject } from 'rxjs/Subject';
 export class LocalStorageService {
 
     private storageSub = new Subject<any>()
-
+    
     constructor(
         
     ) { }
@@ -25,7 +25,6 @@ export class LocalStorageService {
         localStorage.removeItem(key);
         this.storageSub.next('changed');
     }
-  
 
 
 }
