@@ -30,7 +30,7 @@
           {{description}}
         </p>
         <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == false" (click)="addToCrate(data)">
-            Add to crate
+            Add to crate ({{itemsInCrate}} / 20)
         </span>
         <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == true" (click)="removeFromCrate(data)">
             Remove from crate

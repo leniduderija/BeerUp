@@ -23,6 +23,7 @@ export class BeerInfoModalComponent {
   favorites;
   data;
   activeCrate: number;
+  itemsInCrate: number;
 
   crate1: any[] = JSON.parse(localStorage.getItem('crate1')) || [];
   crate2: any[] = JSON.parse(localStorage.getItem('crate2')) || [];
@@ -62,6 +63,7 @@ export class BeerInfoModalComponent {
     let active = this['crate' + this.activeCrate];
     let index = active.map(function(e) { return e.id; }).indexOf(data.id);
     this['crate' + this.activeCrate] = JSON.parse(localStorage.getItem('crate' + this.activeCrate)) || [];
+    this.itemsInCrate = this['crate' + this.activeCrate].length;
     
     if(index == -1){
       this.alreadyInCrate = false;
