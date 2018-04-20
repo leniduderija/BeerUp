@@ -1,8 +1,8 @@
 <h1 class="section-title">Crate</h1>
 <ul class="tab-nav">
-  <li><a href="javascript:void(0)" (click)="changeCrate(1)">One</a></li>
-  <li><a href="javascript:void(0)" (click)="changeCrate(2)">Two</a></li>
-  <li><a href="javascript:void(0)" (click)="changeCrate(3)">Three</a></li>
+  <li><a href="javascript:void(0)" (click)="changeCrate(1)" [ngClass]="{'active' : activeCrate == 1}">One</a></li>
+  <li><a href="javascript:void(0)" (click)="changeCrate(2)" [ngClass]="{'active' : activeCrate == 2}">Two</a></li>
+  <li><a href="javascript:void(0)" (click)="changeCrate(3)" [ngClass]="{'active' : activeCrate == 3}">Three</a></li>
 </ul>
 
 <div *ngIf="activeCrate == 1" class="crate__container clearfix">
@@ -17,8 +17,15 @@
   </div>
 </div>
 
-  <div *ngIf="activeCrate == 3" class="crate__container clearfix">
-    <div class="crate__spot" *ngFor="let item of crate3; let i = index">
-      <div class="crate__item" [ngClass]="getClassByValue(item)"></div>
-    </div>
+<div *ngIf="activeCrate == 3" class="crate__container clearfix">
+  <div class="crate__spot" *ngFor="let item of crate3; let i = index">
+    <div class="crate__item" [ngClass]="getClassByValue(item)"></div>
   </div>
+</div>
+
+<div class="sidebar-quote">
+  <p class="quote">
+    Add a beer to have it appear in the crate.
+  </p>
+  <p class="author">- Captain Obvious</p>
+</div>
