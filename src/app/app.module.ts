@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from "@angular/forms";
 
 
+
 import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { ModalsModule } from './modals/modals.module';
@@ -14,7 +15,7 @@ import { JoinModule } from './join/join.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import { SwiperModule } from 'angular2-useful-swiper';
 
 
 @NgModule({
@@ -31,9 +32,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     JoinModule,
     FavoritesModule,
-    CoreModule
+    CoreModule,
+    SwiperModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [
+    SwiperModule
+  ]
 })
 export class AppModule { }
