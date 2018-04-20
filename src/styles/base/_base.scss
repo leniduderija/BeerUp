@@ -19,24 +19,8 @@ body{
 
   &.page-body {
     background-color: #000;
-    background-image: url('./assets/img/pattern.png');  
+    background-image: url('./assets/img/pattern.png');
   }
-
-  @include breakpoint(880){
-    padding: 50px 0 0;
-
-    &.page-login,
-    &.page-home,
-    &.page-google,
-    &.page-google-results,
-    &.page-index{
-      padding: 0;
-    }
-  }
-}
-.page {
-  background-image: url('./assets/img/pattern.png');
-  background-size: cover;
 }
 
 h1{
@@ -133,6 +117,10 @@ hr {
   li{
     margin: 0 0 15px;
   }
+}
+
+.no-margin {
+  margin: 0;
 }
 
 .pull-left {
