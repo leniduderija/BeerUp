@@ -13,6 +13,8 @@ import { ModalsModule } from '../modals/modals.module';
 
 import { InfiniteScrollModule } from 'angular2-infinite-scroll';
 
+import { SwiperModule } from 'angular2-useful-swiper';
+
 @NgModule({
   bootstrap: [],
   imports: [
@@ -21,7 +23,8 @@ import { InfiniteScrollModule } from 'angular2-infinite-scroll';
     HomeRoutingModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    ModalsModule
+    ModalsModule,
+    SwiperModule
   ],
   declarations: [HomeComponent],
   entryComponents: []

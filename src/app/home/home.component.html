@@ -3,14 +3,16 @@
         <div class="content">
             <section class="items-list-section">
               <h1 class="section-title">Beer</h1>
-              <h4>Sort By:</h4>
-              <ul class="tab-nav">
-                <li><a href="javascript: void(0)" (click)="sortByProperty('name')">Name</a></li>
-                <li><a href="javascript: void(0)" (click)="sortByProperty('abv')">ABV</a></li>
-                <li><a href="javascript: void(0)" (click)="sortByProperty('ibu')">IBU</a></li>
-              </ul>
+              <div class="sorting-container clearfix" *ngIf="beers.length">
+                <h4 class="no-margin pull-left">Sort By:</h4>
+                <ul class="tab-nav pull-left">
+                  <li><a href="javascript: void(0)" (click)="sortByProperty('name')" [ngClass]="{'active' : selectedSort == 'name'}">Name</a></li>
+                  <li><a href="javascript: void(0)" (click)="sortByProperty('abv')" [ngClass]="{'active' : selectedSort == 'abv'}">ABV</a></li>
+                  <li><a href="javascript: void(0)" (click)="sortByProperty('ibu')" [ngClass]="{'active' : selectedSort == 'ibu'}">IBU</a></li>
+                </ul>
+              </div>
               <div class="items-list clearfix" 
-                *ngIf="beers != undefined && beers.length"
+                *ngIf="beers != undefined && beers.length && !mobileView"
                 infinite-scroll
                 [infiniteScrollDistance]="scrollDistance"
                 [infiniteScrollThrottle]="throttle"
@@ -28,14 +30,45 @@
                         {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
                     </h5>
                     <p>
-                      IBU {{beer.ibu}}
+                      <span class="item-text item-prop">IBU</span><span class="item-text item-text">{{beer.ibu}}</span>
                     </p>
                     <p>
-                      ABV {{beer.abv}}%
+                      <span class="item-text item-prop">ABV</span><span class="item-text item-text">{{beer.abv}}%</span>
                     </p>
                   </div>
                 </div>
               </div>
+              <div class="items-list clearfix" 
+                *ngIf="beers != undefined && beers.length && mobileView">
+                
+                <swiper class="swiper" [config]="config">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let beer of beers">
+                            <div class="item clearfix">
+                              <div class="favorite">
+                                <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!beer.favorite" (click)="toggleFavorite(beer)">
+                                <img src="../assets/img/heart solid.png" alt="Favorite beer" *ngIf="beer.favorite" (click)="toggleFavorite(beer)">
+                              </div>
+                              <div class="item-img">
+                                <img src="{{beer.image_url}}" alt="{{beer.name}}">
+                              </div>
+                              <div class="item-content" (click)="openBeerInfo(beer)">
+                                <h5>
+                                    {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
+                                </h5>
+                                <p>
+                                    <span class="item-text item-prop">IBU</span><span class="item-text item-text">{{beer.ibu}}</span>
+                                  </p>
+                                  <p>
+                                    <span class="item-text item-prop">ABV</span><span class="item-text item-text">{{beer.abv}}%</span>
+                                  </p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </swiper>                
+              </div>
+              <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
               <div *ngIf="!beers.length">
                 {{errorMessage}}
               </div>
