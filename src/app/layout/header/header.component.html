@@ -1,27 +1,41 @@
-<header id="header" class="clearfix">
-    <div class="page">
+<header id="header" class="clearfix" [ngClass]="headerClass">
+    <div class="page clearfix">
         <nav id="navigation" class="navigation-bar clearfix">
             <a routerLink="/home" class="logo-link pull-left">
             <img class="logo" src="../assets/img/symbol.png">
             <img class="logo" src="../assets/img/logo.png">
             </a>
             <ul class="nav-links plain-list pull-right">
-                <li><a routerLink="/home">Home</a></li>
-                <li><a routerLink="/favorites">Favorites</a></li>
-                <li class="join"><a routerLink="/join">Join</a></li>
+                <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
+                <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
+                <li class="join" routerLinkActive="active"><a routerLink="/join">Join</a></li>
             </ul>
         </nav>
-        <div class="header-content pull-left text-left">
-        <h6 class="header-title small-title">
-            The beerster pro 2.0
-        </h6>
-        <h1 class="header-title big-title">
-            Join our famous beerup!
-        </h1>
-        <a routerLink="/join" class="header-title join-link text-center">Join beerup</a>
+        <div class="header-content pull-left text-left" *ngIf="headerClass == 'home'">
+            <h6 class="header-title small-title">
+                The beerster pro 2.0
+            </h6>
+            <h1 class="header-title big-title">
+                Join our famous beerup!
+            </h1>
+            <div class="join-container">
+                <a routerLink="/join" class="header-title join-link text-center">Join beerup</a>
+            </div>
         </div>
+        <div class="header-content pull-left text-left" *ngIf="headerClass == 'join'">
+            <h1 class="header-title big-title">
+                Join up!
+            </h1>
+        </div>
+        <div class="header-content pull-left text-left" *ngIf="headerClass == 'favorites'">
+            <h1 class="header-title big-title">
+                Favourites
+            </h1>
+        </div>
+
         <div class="header-content pull-right text-right">
-            <img class="logo" src="../assets/img/illustration.png">
+            <img class="header-content-image" src="../assets/img/illustration.png">
         </div>
+        <img *ngIf="headerClass == 'home'" class="beerCap header-beerCap" src="../assets/img/cap.png">
     </div>
 </header>
