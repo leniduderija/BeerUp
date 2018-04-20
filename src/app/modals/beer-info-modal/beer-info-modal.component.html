@@ -5,35 +5,36 @@
         <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!favorite" (click)="addFavorite(data)">
         <img src="../assets/img/heart solid.png" alt="Favorite beer" *ngIf="favorite" (click)="removeFavorite(data)">
     </span>
-    <span class="icon-button pull-right" (click)="close()">
-        <img src="../assets/img/Close icon.png">
+    <span class="icon-button pull-right modal-close" (click)="close()">
+        <!-- <img src="../assets/img/Close icon.png"> -->
+        &#10006;
     </span>
   </div>
 
   <div class="beer-modal-content clearfix">
-    <div class="item clearfix">
-      <div class="item-img">
+    <div class="modal-item clearfix">
+      <div class="modal-item-img">
         <img src="{{image_url}}" alt="{{name}}">
       </div>
-      <div class="item-content text-left">
+      <div class="modal-item-content text-left">
         <h1>
             {{ name }}
         </h1>
         <p>
-          IBU {{ibu}}
+          <span class="modal-item-text modal-item-prop">IBU</span><span class="modal-item-text modal-item-value">{{ibu}}</span>
         </p>
         <p>
-          ABV {{abv}}%
+            <span class="modal-item-text modal-item-prop">ABV</span><span class="modal-item-text modal-item-value">{{abv}}%</span>           
         </p>
         <br>
-        <p>
+        <p class="modal-item-text modal-item-description">
           {{description}}
         </p>
         <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == false" (click)="addToCrate(data)">
             Add to crate ({{itemsInCrate}} / 20)
         </span>
         <span class="icon-button text-center add-to-crate" *ngIf="alreadyInCrate == true" (click)="removeFromCrate(data)">
-            Remove from crate
+            Remove from crate ({{itemsInCrate}} / 20)
         </span>
         <div *ngIf="unableToAddToCrate"
             class="alert alert-danger">

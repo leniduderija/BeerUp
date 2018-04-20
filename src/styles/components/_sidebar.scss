@@ -1,0 +1,24 @@
+.sidebar-container {
+    @include breakpoint(640){
+        text-align: center;
+    }
+
+    .sidebar-quote {
+        width: 100%;
+        text-align: center;
+        font-family: "Open Sans";
+        font-size: 12px;
+        line-height: 32px;
+
+        p {
+            margin: 0;
+        }
+        .quote {
+            color: #3F4750;            
+        }
+        .author {
+            color: #9FA3A7;
+        }
+
+    }
+}
