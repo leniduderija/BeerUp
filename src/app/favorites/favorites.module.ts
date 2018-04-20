@@ -11,6 +11,8 @@ import { PunkapiService } from '../core/punkapi.service';
 
 import { ModalsModule } from '../modals/modals.module';
 
+import { SwiperModule } from 'angular2-useful-swiper';
+
 @NgModule({
   bootstrap: [],
   imports: [
@@ -18,7 +20,8 @@ import { ModalsModule } from '../modals/modals.module';
     ModalsModule,
     FavoritesRoutingModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    SwiperModule
   ],
   declarations: [FavoritesComponent],
   entryComponents: []

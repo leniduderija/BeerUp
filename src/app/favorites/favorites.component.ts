@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { HostListener } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material';
@@ -18,6 +19,33 @@ export class FavoritesComponent implements OnInit {
 
   selectedSort: string = 'name';
 
+  config: any = {
+    pagination: '.swiper-pagination',
+    paginationClickable: true,
+    nextButton: '.swiper-button-next',
+    prevButton: '.swiper-button-prev',
+    spaceBetween: 0,
+    slidesPerView: 1,
+    shortSwipes: true
+  };
+  
+  public innerWidth: any;
+  mobileView: boolean;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.innerWidth = window.innerWidth;
+    let body = document.getElementsByTagName('body')[0];
+    if(this.innerWidth < 540){
+      body.classList.add("mobile");
+      this.mobileView = true;
+    } else {
+      body.classList.remove("mobile");
+      this.mobileView = false;
+    }
+  }
+
+
   constructor(
     private dialog: MatDialog
   ) { }
@@ -25,6 +53,21 @@ export class FavoritesComponent implements OnInit {
   ngOnInit() {
 
     this.getBeers();
+
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.remove("home");   //remove the class
+    body.classList.remove("join");   //remove the class
+    body.classList.add("favorites");   //add the class
+
+    this.innerWidth = window.innerWidth;
+    
+    if(this.innerWidth < 540){
+      body.classList.add("mobile");
+      this.mobileView = true;
+    } else {
+      body.classList.remove("mobile");
+      this.mobileView = false;
+    }
 
   }
 

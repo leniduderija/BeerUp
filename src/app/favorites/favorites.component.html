@@ -3,13 +3,16 @@
         <div class="content">
             <section class="items-list-section">
               <h1 class="section-title">Beer</h1>
-              <h4>Sort By:</h4>
-              <ul class="tab-nav">
-                <li><a href="javascript: void(0)" (click)="sortByProperty('name')">Name</a></li>
-                <li><a href="javascript: void(0)" (click)="sortByProperty('abv')">ABV</a></li>
-                <li><a href="javascript: void(0)" (click)="sortByProperty('ibu')">IBU</a></li>
-              </ul>
-              <div class="items-list clearfix" *ngIf="beers != undefined && beers.length">
+              <div class="sorting-container clearfix" *ngIf="beers.length">
+                <h4>Sort By:</h4>
+                <ul class="tab-nav">
+                  <li><a href="javascript: void(0)" (click)="sortByProperty('name')">Name</a></li>
+                  <li><a href="javascript: void(0)" (click)="sortByProperty('abv')">ABV</a></li>
+                  <li><a href="javascript: void(0)" (click)="sortByProperty('ibu')">IBU</a></li>
+                </ul>
+              </div>
+              
+              <div class="items-list clearfix" *ngIf="beers != undefined && beers.length && !mobileView">
                 <div class="item clearfix" *ngFor="let beer of beers">
                   <div class="favorite">
                     <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!beer.favorite" (click)="toggleFavorite(beer)">
@@ -23,14 +26,46 @@
                         {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
                     </h5>
                     <p>
-                      IBU {{beer.ibu}}
+                      <span class="item-text item-prop">IBU</span><span class="item-text item-text">{{beer.ibu}}</span>
                     </p>
                     <p>
-                      ABV {{beer.abv}}%
+                      <span class="item-text item-prop">ABV</span><span class="item-text item-text">{{beer.abv}}%</span>
                     </p>
                   </div>
                 </div>
               </div>
+
+              <div class="items-list clearfix" 
+                *ngIf="beers != undefined && beers.length && mobileView">
+                
+                <swiper class="swiper" [config]="config">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" *ngFor="let beer of beers">
+                            <div class="item clearfix">
+                              <div class="favorite">
+                                <img src="../assets/img/heart outline.png" alt="Add to favorites" *ngIf="!beer.favorite" (click)="toggleFavorite(beer)">
+                                <img src="../assets/img/heart solid.png" alt="Favorite beer" *ngIf="beer.favorite" (click)="toggleFavorite(beer)">
+                              </div>
+                              <div class="item-img">
+                                <img src="{{beer.image_url}}" alt="{{beer.name}}">
+                              </div>
+                              <div class="item-content" (click)="openBeerInfo(beer)">
+                                <h5>
+                                    {{ (beer.name.length>14)? (beer.name | slice:0:6)+'..':(beer.name) }}
+                                </h5>
+                                <p>
+                                    <span class="item-text item-prop">IBU</span><span class="item-text item-text">{{beer.ibu}}</span>
+                                  </p>
+                                  <p>
+                                    <span class="item-text item-prop">ABV</span><span class="item-text item-text">{{beer.abv}}%</span>
+                                  </p>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </swiper>                
+              </div>
+
               <div *ngIf="!beers.length">
                 {{errorMessage}}
               </div>
