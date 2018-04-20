@@ -48,6 +48,12 @@ export class JoinComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    let body = document.getElementsByTagName('body')[0];
+    body.classList.remove("favorites");   //remove the class
+    body.classList.remove("home");   //remove the class
+    body.classList.add("join");   //add the class
+
   }
 
   
