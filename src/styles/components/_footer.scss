@@ -1,3 +1,5 @@
+$lineColor: rgba(255,200,10,0.32);
+
 footer {
     color: $white;
     text-transform: uppercase;
@@ -5,9 +7,11 @@ footer {
     font-weight: bold;
     line-height: 14px;
     letter-spacing: 2.4px;
+    position: relative;
     
     .wrapper {
-        margin: 80px 0;
+        padding: 80px 0 40px 0;
+        border-bottom: 1px solid $lineColor;
     }
 
     .footer-content {
@@ -37,6 +41,10 @@ footer {
                         border: none;
                         color: $white;
                     }
+
+                    @include breakpoint(1024){
+                        padding: 0;
+                    }
                 }
             }
     }
@@ -47,6 +55,14 @@ footer {
         line-height: 22px;
         color: $lightBlack;
         font-family: "Open Sans";
-        margin-bottom: 40px;
+        margin-bottom: 0;
+        padding-top: 40px;
+        border-bottom: 0;
+    }
+
+    .footer-beerCap {
+        right: 50%;
+        margin-left: -24px;
+        top: -8px;
     }
 }

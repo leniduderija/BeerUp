@@ -1,10 +1,16 @@
 .page {
     width: 1130px;
     margin: 0 auto;
-    padding: 10px 0;
+    position: relative;
+    @include breakpoint(1200){
+        width: 100%;
+        padding: 20px 40px;
+    }
 }
 .main-content {
     background: $mainBakcgroundWhite;
+    position: relative;
+    z-index: 999;
 }
 main {
     width: 866px;
@@ -13,13 +19,37 @@ main {
     &.without-sidebar {
         width: 100%;
     }
+
+    @include breakpoint(1200){
+        width: 70%;
+    }
+    @include breakpoint(980){
+        width: 60%;
+    }
+    @include breakpoint(760){
+        width: 50%;
+    }
+    @include breakpoint(760){
+        width: 100%;
+    }
 }
 aside {
     width: 264px;
     float: left;
+
+    @include breakpoint(1200){
+        float: right;
+    }
+    @include breakpoint(640){
+        width: 100%;
+    }
 }
 .section-title {
     color: $black;
     font-size: 36px;
     line-height: 48px;
+}
+.beerCap {
+    position: absolute;
+    transform: scaleY(-1);
 }

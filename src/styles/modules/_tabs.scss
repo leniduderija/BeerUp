@@ -1,0 +1,43 @@
+$black: #3F4750;
+$tabsGray: #9FA3A7;
+$borderColor: #F05638;
+
+.tab-nav {
+    list-style: none;
+    padding: 0;
+
+    li {
+        display: inline-block;
+        padding: 10px;
+        padding-left: 0;
+
+        a {
+            color: $tabsGray;            
+            font-family: Montserrat;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 2.8px;
+            line-height: 17px;
+            padding-bottom: 3px;
+            text-transform: uppercase;
+            margin-right: 20px;
+
+            &.active {
+                border-bottom: 4px solid $borderColor;
+                color: $black;
+            }
+
+            &:hover {
+                border-bottom: 4px solid $borderColor;
+            }
+        }
+    }
+}
+
+.sorting-container {
+    h4 {
+        @include breakpoint(640){
+            padding: 10px 0;
+        }
+    }
+}

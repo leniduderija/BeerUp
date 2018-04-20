@@ -3,7 +3,17 @@ $menu-icon-color: $white;
 $border-color: $yellow;
 
 header {
-    color: $white !important;    
+    color: $white !important;
+
+    &.home {
+        .header-content-image {
+            bottom: 0 !important;
+
+            @include breakpoint(1023){
+                bottom: auto !important;
+            }
+        }
+    }
 
     .navigation-bar {
 
@@ -14,7 +24,7 @@ header {
         text-align: center;
         
         .logo-link {
-            padding: 10px;
+            padding: 20px 0;
             display: inline-block;
 
             img {
@@ -29,7 +39,7 @@ header {
         .nav-links {
             display: inline-block;
             margin: 0;
-            padding: 10px;
+            padding: 10px 0;
 
             li {
                 display: inline-block;
@@ -45,6 +55,10 @@ header {
                         color: $white;
                         background: $yellow;                        
                     }
+                    &.active {
+                        color: $white;
+                        background: $yellow;     
+                    }
                     a {
                         padding: 20px;
                     }
@@ -56,6 +70,10 @@ header {
                 a {
                     color: $menu-link-color;
                     padding: 10px;
+
+                    &.active {
+                        border-bottom: 1px solid #FFC80A;
+                    }
                 }
             }
         }
@@ -63,7 +81,28 @@ header {
 
     .header-content {
         width: 50%;
-        padding-top: 90px;
+        padding: 70px 0;
+
+        @include breakpoint(1023){
+            padding-bottom: 0;
+        }
+
+        @include breakpoint(768){
+            width: 100%;
+            text-align: center;
+        }
+
+        .join-container {
+            @include breakpoint(1023){
+                display: block;
+                width: 100%;
+                text-align: center;
+                position: absolute;
+                bottom: -10px;
+                z-index: 99999;
+                left: 0;
+            }
+        }
 
         .header-title {
             font-weight: bold;
@@ -75,6 +114,11 @@ header {
             &.big-title {
                 font-size: 90px;
                 line-height: 90px;
+
+                @include breakpoint(1023){
+                    font-size: 60px;
+                    line-height: 60px;
+                }
             }
             &.join-link {
                 color: $headerBlack;
@@ -84,12 +128,52 @@ header {
                 padding: 17px 30px;
                 border-radius: 50px;
                 background: $yellow;
-                background: 3px solid $yellow;
+
+                @include breakpoint(768){
+                    
+                }
 
                 &:hover {
-                    background-color: rgba($yellow, .5);
+                    // background-color: rgba($yellow, .5);
                 }
             }
+        }        
+
+        .header-content-image {
+            margin-bottom: -7px;
+            position: absolute;
+            bottom: -60%;
+            /* top: 0; */
+            right: 0;
+
+            @include breakpoint(1200){
+                margin-bottom: -17px;
+                max-width: 100%;
+            }
+
+            @include breakpoint(1024){
+                position: relative;
+                bottom: auto;
+                right: auto;
+                margin-bottom: -27px;
+            }
+
+            @include breakpoint(768){
+                margin-bottom: -50%;
+            }
+        }
+    }
+    .header-beerCap {
+        right: 40px;
+        bottom: -8px;
+        z-index: 9999;
+
+        @include breakpoint(1024){
+            right: 80px;
+        }
+        @include breakpoint(1024){
+            // right: 135px;
+            z-index: 9999;
         }
     }
 

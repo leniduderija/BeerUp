@@ -4,6 +4,10 @@
     padding: 14px;
     background: url("/assets/img/crate.png") no-repeat;
 
+    @include breakpoint(640){
+        margin: 0 auto;
+    }
+
     .crate__spot {
         width: 59px;
         height: 58px;

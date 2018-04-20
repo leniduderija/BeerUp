@@ -1,3 +1,5 @@
+$textGray: #9FA3A7;
+
 .item {
     width: 168px;
     height: 168px;
@@ -5,15 +7,23 @@
     float: left;
     margin: 24px;
     margin-left: 0;
-    padding: 22px 20px;
+    padding: 16px 16px;
     border-radius: 4px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.08);
     cursor: pointer;
     position: relative;
 
+    @include breakpoint(540){
+        width: 100%;
+        height: auto;
+        max-height: none;
+        padding: 10px;
+    }
+
     .item-img {
         width: 30px;
         float: left;
+        margin: 0 5px;
 
         img {
             width: 100%;
@@ -26,7 +36,13 @@
         float: left;
         padding-left: 10px;
         text-transform: uppercase;
-        
+
+        h1 {
+            font-family: Montserrat;
+            font-size: 36px;
+            font-weight: bold;
+            line-height: 36px;
+        }        
 
         h5 {
             color: $headerBlack;
@@ -41,6 +57,24 @@
             font-size: 14px;
             line-height: 26px;
             margin: 0;
+        }
+
+        .item-text {
+            color: $textGray;
+            font-family: "Open Sans";
+            font-size: 14px;
+            line-height: 26px;
+
+            &.item-prop {                
+                margin-right: 23px;
+            }
+            &.item-value {
+                color: $black;
+                font-weight: bold;
+            }
+            &.item-description {
+                text-transform: capitalize;
+            }
         }
     }
 
