@@ -16,6 +16,7 @@ import { FavoritesModule } from './favorites/favorites.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SwiperModule } from 'angular2-useful-swiper';
+import { LoginModule } from './login/login.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { SwiperModule } from 'angular2-useful-swiper';
     JoinModule,
     FavoritesModule,
     CoreModule,
-    SwiperModule
+    SwiperModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent],
