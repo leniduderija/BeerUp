@@ -12,14 +12,29 @@ footer {
     .wrapper {
         padding: 80px 0 40px 0;
         border-bottom: 1px solid $lineColor;
+
+        @include breakpoint(540){
+            padding: 40px 0;
+        }
     }
 
     .footer-content {
         width: 33.3333%;
         display: inline-block;
 
+        @include breakpoint(540){
+            width: 100%;
+            display: block;
+            text-align: center !important;
+            margin: 20px 0;
+        }
+
         .footer-logo {
             padding: 0 10px;
+
+            @include breakpoint(540){
+                float: none;
+            }
         }
     }
 
@@ -32,6 +47,13 @@ footer {
             li {
                 display: inline-block;
                 padding: 0 10px;
+
+                @include breakpoint(1024){
+                    padding: 0 5px;
+                }
+                @include breakpoint(540){
+                    padding: 0 10px;
+                }
 
                 a {
                     color: $white;
@@ -60,9 +82,19 @@ footer {
         border-bottom: 0;
     }
 
-    .footer-beerCap {
-        right: 50%;
-        margin-left: -24px;
-        top: -8px;
+    .beerCap-container {
+        position: absolute;
+        left: 0;
+        right: 0;
+        text-align: center;
+        top: 0;
+
+        .footer-beerCap {
+            position: relative;
+            margin-top: -20px;
+            z-index: 999;
+        }
     }
+
+    
 }
