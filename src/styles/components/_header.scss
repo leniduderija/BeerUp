@@ -22,6 +22,17 @@ header {
         letter-spacing: 2.4px;
         line-height: 14px;
         text-align: center;
+
+        @include breakpoint(540){
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 0 10px;
+            z-index: 999999;
+            background: #000;
+            border-bottom: 1px solid $border-color;
+        }
         
         .logo-link {
             padding: 20px 0;
@@ -41,15 +52,38 @@ header {
             margin: 0;
             padding: 10px 0;
 
+            @include breakpoint(540){
+                display: none;
+                width: 100%;
+            }
+
+            &.show {
+                display: block;
+            }
+
             li {
                 display: inline-block;
                 padding: 10px;
+
+                @include breakpoint(540){
+                    padding: 10px 0;
+                    margin: 0;
+                    width: 100%;
+                    text-align: right;
+                }
 
                 &.join {
                     text-transform: uppercase;
                     border: 3px solid $border-color;
                     border-radius: 34px;
                     padding: 20px;
+
+                    @include breakpoint(540){
+                        padding: 10px 0;
+                        border-radius: 0;
+                        margin: 0;
+                        border: none !important;
+                    }
 
                     &:hover {
                         color: $white;
@@ -61,9 +95,19 @@ header {
                     }
                     a {
                         padding: 20px;
+
+                        @include breakpoint(540){
+                            padding: 10px;
+                        }
                     }
                     a:hover {
                         border: none;
+                    }
+
+                    @include breakpoint(540){
+                        margin: 0;
+                        border: none;
+                        background: transparent !important;
                     }
                 }
 
@@ -74,7 +118,25 @@ header {
                     &.active {
                         border-bottom: 1px solid #FFC80A;
                     }
+                    @include breakpoint(540){
+                        border: none;
+                    }
                 }
+            }
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            float: right;
+            padding: 20px 0;
+            font-size: 24px;
+
+            &:hover {
+                border: none;
+            }
+
+            @include breakpoint(540){                
+                display: inline-block;
             }
         }
     }

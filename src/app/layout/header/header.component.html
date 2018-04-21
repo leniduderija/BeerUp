@@ -2,10 +2,13 @@
     <div class="page clearfix">
         <nav id="navigation" class="navigation-bar clearfix">
             <a routerLink="/home" class="logo-link pull-left">
-            <img class="logo" src="../assets/img/symbol.png">
-            <img class="logo" src="../assets/img/logo.png">
+                <img class="logo" src="../assets/img/symbol.png">
+                <img class="logo" src="../assets/img/logo.png">
             </a>
-            <ul class="nav-links plain-list pull-right">
+            <a href="javascript: void(0)" class="mobile-menu-toggle" (click)="toggleState()">
+                <img class="logo" src="../assets/img/Close icon.png">
+            </a>
+            <ul class="nav-links plain-list pull-right" [ngClass]="{'show' : showMobileMenu}">
                 <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
                 <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
                 <li class="join" routerLinkActive="active"><a routerLink="/join">Join</a></li>

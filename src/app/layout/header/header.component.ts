@@ -11,6 +11,8 @@ export class HeaderComponent implements OnInit {
   router: Router;
   headerClass: string;
 
+  showMobileMenu: boolean;
+  
   constructor(private _router: Router ) {
     this.router = _router;
   }
@@ -25,6 +27,12 @@ export class HeaderComponent implements OnInit {
       this.headerClass = 'join';
     }
 
+    this.showMobileMenu = false;
+  }
+
+  toggleState() { // click handler
+    let bool = this.showMobileMenu;
+    this.showMobileMenu = bool === false ? true : false; 
   }
 
 }
