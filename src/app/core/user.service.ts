@@ -19,6 +19,7 @@ export class UserService {
   private backendBaseUrl: string;
 
   activeCrate: number = 1;
+  
 
   constructor(private http: HttpClient) {
     this.backendBaseUrl = environment.backendUrl;
@@ -35,23 +36,33 @@ export class UserService {
       headers: headers
     });
   }
-
-  getAll() {
-    return this.http.get<User[]>('/users');
-  }
-
+  
+  
   getById(id: number) {
-      return this.http.get('/users/' + id);
+
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Authorization', 'Bearer fake-jwt-token');
+      
+      return this.http.get('/users/' + id,
+      {
+        headers: headers
+      });
   }
 
   update(user: User) {
-    return this.http.put('/users/' + user.id, user);
-  }
 
-  delete(id: number) {
-      return this.http.delete('/users/' + id);
-  }
+    const headers = new HttpHeaders()
+      .set('Content-Type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Authorization', 'Bearer fake-jwt-token');
 
+    return this.http.put('/users/' + user.id, user,
+    {
+      headers: headers
+    });
+  }
   
 
 
