@@ -11,7 +11,8 @@
             <ul class="nav-links plain-list pull-right" [ngClass]="{'show' : showMobileMenu}" *ngIf="headerClass != 'login'">
                 <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
                 <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
-                <li class="join" routerLinkActive="active"><a routerLink="/join">Join</a></li>
+                <li class="join" routerLinkActive="active" *ngIf="!loggedInUser"><a routerLink="/join">Join</a></li>
+                <li class="join" routerLinkActive="active" *ngIf="loggedInUser"><a routerLink="/user/{{user.id}}">Profile</a></li>
             </ul>
         </nav>
         <div class="header-content pull-left text-left" *ngIf="headerClass == 'home'">
@@ -37,10 +38,19 @@
         </div>
 
         <div class="header-content pull-left text-left" *ngIf="headerClass == 'login'">
-                <h1 class="header-title big-title">
-                    Login
-                </h1>
+            <h1 class="header-title big-title">
+                Login
+            </h1>
+        </div>
+
+        <div class="header-content pull-left text-left" *ngIf="headerClass == 'profile'">
+            <h1 class="header-title big-title">
+                Hello {{firstName}}!
+            </h1>
+            <div class="join-container">
+                <a href="javascript: void(0)" class="header-title join-link text-center" (click)="logout()">Logout?</a>
             </div>
+        </div>
 
         <div class="header-content pull-right text-right">
             <img class="header-content-image" src="../assets/img/illustration.png">
