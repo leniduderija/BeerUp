@@ -5,10 +5,10 @@
                 <img class="logo" src="../assets/img/symbol.png">
                 <img class="logo" src="../assets/img/logo.png">
             </a>
-            <a href="javascript: void(0)" class="mobile-menu-toggle" (click)="toggleState()">
+            <a href="javascript: void(0)" class="mobile-menu-toggle" (click)="toggleState()" *ngIf="headerClass != 'login'">
                 <img class="logo" src="../assets/img/Close icon.png">
             </a>
-            <ul class="nav-links plain-list pull-right" [ngClass]="{'show' : showMobileMenu}">
+            <ul class="nav-links plain-list pull-right" [ngClass]="{'show' : showMobileMenu}" *ngIf="headerClass != 'login'">
                 <li><a routerLink="/home" routerLinkActive="active">Home</a></li>
                 <li><a routerLink="/favorites" routerLinkActive="active">Favorites</a></li>
                 <li class="join" routerLinkActive="active"><a routerLink="/join">Join</a></li>
@@ -35,6 +35,12 @@
                 Favourites
             </h1>
         </div>
+
+        <div class="header-content pull-left text-left" *ngIf="headerClass == 'login'">
+                <h1 class="header-title big-title">
+                    Login
+                </h1>
+            </div>
 
         <div class="header-content pull-right text-right">
             <img class="header-content-image" src="../assets/img/illustration.png">

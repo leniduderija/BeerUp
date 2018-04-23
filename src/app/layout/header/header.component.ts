@@ -25,6 +25,8 @@ export class HeaderComponent implements OnInit {
       this.headerClass = 'favorites';
     } else if(this.router.url == '/join'){
       this.headerClass = 'join';
+    } else if(this.router.url == '/login'){
+      this.headerClass = 'login';
     }
 
     this.showMobileMenu = false;
