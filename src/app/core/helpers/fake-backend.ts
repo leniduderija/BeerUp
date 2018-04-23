@@ -33,7 +33,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     let body = {
                         id: user.id,
                         email: user.email,
-                        fullName: user.fullName,
+                        fullName: user.fullname,
                         token: 'fake-jwt-token'
                     };
 
@@ -104,6 +104,35 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         if (user.id === id) {
                             // delete user
                             users.splice(i, 1);
+                            localStorage.setItem('users', JSON.stringify(users));
+                            break;
+                        }
+                    }
+
+                    // respond 200 OK
+                    return Observable.of(new HttpResponse({ status: 200 }));
+                } else {
+                    // return 401 not authorised if token is null or invalid
+                    return Observable.throw('Unauthorised');
+                }
+            }
+
+            // update user
+            if (request.url.match(/\/users\/\d+$/) && request.method === 'PUT') {
+                // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
+                if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
+                    // get new user object from post body
+                    let newUser = request.body;
+
+                    // find user by id in users array
+                    let urlParts = request.url.split('/');
+                    let id = parseInt(urlParts[urlParts.length - 1]);
+                    for (let i = 0; i < users.length; i++) {
+                        let user = users[i];
+                        if (user.id === id) {
+                            // delete user
+                            users.splice(i, 1);
+                            users.push(newUser);
                             localStorage.setItem('users', JSON.stringify(users));
                             break;
                         }
