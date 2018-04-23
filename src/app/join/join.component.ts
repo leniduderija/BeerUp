@@ -11,7 +11,6 @@ import { UserService } from '../core/user.service';
 // used to create fake backend
 import { fakeBackendProvider } from '../core/helpers/fake-backend';
 
-
 @Component({
   moduleId: module.id,
   selector: 'app-join',
@@ -22,7 +21,8 @@ export class JoinComponent implements OnInit {
 
   // model: User;
 
-  user = new User('', '', '', '', '', '', false);
+  // user = new User('', '', '', '', '', '', false);
+  user: any = {};
   loading = false;
   created = false;
 
@@ -69,9 +69,9 @@ export class JoinComponent implements OnInit {
               console.debug('Success! ', data);
               this.loading = false;
               this.created = true;
-              // this.user = new User('', '', '', '', '', '', false);
+              
               this.alertService.success('Registration successful', true);
-              // this.router.navigate(['home']);
+              this.router.navigate(['/login']);
           },
           error => {
             console.debug('Error! ', error);

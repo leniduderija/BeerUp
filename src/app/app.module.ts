@@ -1,8 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule } from "@angular/forms";
+
+import { AuthGuard } from './core/guards/auth.guard';
+import { JwtInterceptor } from './core/helpers/jwt.interceptor';
 
 
 
@@ -10,13 +14,14 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { ModalsModule } from './modals/modals.module';
 import { CoreModule } from './core/core.module';
+import { AlertModule } from './core/directives/alert/alert.module';
 import { HomeModule } from './home/home.module';
 import { JoinModule } from './join/join.module';
+import { LoginModule } from './login/login.module';
 import { FavoritesModule } from './favorites/favorites.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SwiperModule } from 'angular2-useful-swiper';
-import { LoginModule } from './login/login.module';
 
 
 @NgModule({
@@ -27,6 +32,7 @@ import { LoginModule } from './login/login.module';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
+    HttpClientModule,
     AppRoutingModule,
     ModalsModule,
     LayoutModule,
@@ -35,12 +41,21 @@ import { LoginModule } from './login/login.module';
     FavoritesModule,
     CoreModule,
     SwiperModule,
-    LoginModule
+    LoginModule,
+    AlertModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   exports: [
-    SwiperModule
+    SwiperModule,
+    AlertModule
   ]
 })
 export class AppModule { }

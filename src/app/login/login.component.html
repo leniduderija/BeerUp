@@ -1,3 +1,47 @@
-<p>
-  login works!
-</p>
+<main class="without-sidebar text-center">
+    <div class="main-content-wrapper join-page">
+      <h2>Login</h2>      
+
+      <form #f="ngForm" (ngSubmit)="login()">
+        <fieldset>
+          <div class="legend">Login information</div>
+          <div class="input-container">
+            <input type="email" id="email" name="email" required [(ngModel)]="model.email" #email="ngModel">
+            <span class="floating-label">Email</span>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="alert alert-danger">
+              <div *ngIf="email.errors.required">
+                Email is required.
+              </div>
+            </div>
+          </div>
+
+          <div class="input-container">
+            <input type="password" id="password" name="password" required [(ngModel)]="model.password" #password="ngModel">
+            <span class="floating-label">Password</span>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="alert alert-danger">
+              <div *ngIf="password.errors.required">
+                Password is required.
+              </div>
+            </div>
+          </div>
+
+        </fieldset>
+
+        <div class="submit-button-container">
+            <button type="submit" [disabled]="!f.valid">Login</button>
+        </div>
+
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />        
+
+      </form>
+
+      <alert></alert>
+
+      <span>Not a member yet? <a [routerLink]="['/join']" class="btn btn-link">Join up!</a></span>
+      
+
+  </div>
+
+</main>

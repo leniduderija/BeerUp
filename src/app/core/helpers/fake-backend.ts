@@ -24,7 +24,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.endsWith('/authenticate') && request.method === 'POST') {
                 // find if any user matches login credentials
                 let filteredUsers = users.filter(user => {
-                    return user.username === request.body.username && user.password === request.body.password;
+                    return user.email === request.body.email && user.password === request.body.password;
                 });
 
                 if (filteredUsers.length) {
@@ -32,9 +32,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     let user = filteredUsers[0];
                     let body = {
                         id: user.id,
-                        username: user.username,
-                        firstName: user.firstName,
-                        lastName: user.lastName,
+                        email: user.email,
+                        fullName: user.fullName,
                         token: 'fake-jwt-token'
                     };
 
@@ -79,9 +78,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 let newUser = request.body;
 
                 // validation
-                let duplicateUser = users.filter(user => { return user.fullname === newUser.fullname; }).length;
+                let duplicateUser = users.filter(user => { return user.email === newUser.email; }).length;
                 if (duplicateUser) {
-                    return Observable.throw('Username "' + newUser.fullname + '" is already taken');
+                    return Observable.throw('Email "' + newUser.email + '" is already taken');
                 }
 
                 // save new user

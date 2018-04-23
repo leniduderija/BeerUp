@@ -6,7 +6,7 @@ import { FormsModule } from "@angular/forms";
 import { JoinComponent } from './join.component';
 import { JoinRoutingModule } from './join-routing.module';
 
-import { AlertComponent } from '../core/directives/alert/alert.component';
+import { AlertModule } from '../core/directives/alert/alert.module';
 
 import { UserService } from '../core/user.service';
 
@@ -17,9 +17,10 @@ import { fakeBackendProvider } from '../core/helpers/fake-backend';
   imports: [
     CommonModule,
     FormsModule,
-    JoinRoutingModule
+    JoinRoutingModule,
+    AlertModule
   ],
-  declarations: [JoinComponent, AlertComponent],
+  declarations: [JoinComponent],
   providers: [
     // provider used to create fake backend
     fakeBackendProvider

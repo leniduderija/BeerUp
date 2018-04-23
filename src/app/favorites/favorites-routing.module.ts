@@ -4,10 +4,13 @@ import { FavoritesComponent } from './favorites.component';
 import { MainComponent } from '../layout/main/main.component';
 // import { SidebarComponent } from './sidebar/sidebar.component';
 
+import { AuthGuard } from '../core/guards/auth.guard';
+
 
 const routes: Routes = [{
   path: '',
   component: MainComponent,
+  canActivate: [AuthGuard],
   children: [
     { path: 'favorites', component: FavoritesComponent},
     // { path: '', component: SidebarComponent, outlet: 'sidebar'}

@@ -5,8 +5,10 @@ import { requestOptionsProvider } from './default-request-options';
 import { AlertService } from './alert.service';
 import { PunkapiService } from './punkapi.service';
 import { UserService } from './user.service';
+import { AuthenticationService } from './authentication.service';
 import { LocalStorageService } from './localStorage.service';
 import { FakeBackendInterceptor } from './helpers/fake-backend';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { AlertComponent } from './directives/alert/alert.component';
 
 @NgModule({
@@ -21,7 +23,8 @@ import { AlertComponent } from './directives/alert/alert.component';
     PunkapiService,
     UserService,
     LocalStorageService,
-    FakeBackendInterceptor
+    FakeBackendInterceptor,
+    AuthenticationService
   ]
 })
 export class CoreModule { }
