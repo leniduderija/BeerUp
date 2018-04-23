@@ -1,7 +1,7 @@
 $danger: #ff0000;
 
 .alert {
-    .alert-danger {
+    &.alert-danger {
         color: $danger;
     }
 }
