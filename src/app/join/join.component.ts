@@ -19,9 +19,6 @@ import { fakeBackendProvider } from '../core/helpers/fake-backend';
 })
 export class JoinComponent implements OnInit {
 
-  // model: User;
-
-  // user = new User('', '', '', '', '', '', false);
   user: any = {};
   loading = false;
   created = false;
