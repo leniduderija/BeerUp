@@ -19,9 +19,13 @@ import { HomeModule } from './home/home.module';
 import { JoinModule } from './join/join.module';
 import { LoginModule } from './login/login.module';
 import { FavoritesModule } from './favorites/favorites.module';
+import { ProfileModule } from './profile/profile.module';
+
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { SwiperModule } from 'angular2-useful-swiper';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -42,7 +46,8 @@ import { SwiperModule } from 'angular2-useful-swiper';
     CoreModule,
     SwiperModule,
     LoginModule,
-    AlertModule
+    AlertModule,
+    ProfileModule
   ],
   providers: [
     AuthGuard,

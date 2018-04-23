@@ -1,0 +1,104 @@
+<main class="without-sidebar text-center">
+    <div class="main-content-wrapper join-page">
+        <h1>
+          Wanna change your profile information?
+        </h1>     
+        
+        <form #f="ngForm" *ngIf="fetchedUser == true && !updated" (ngSubmit)="onSubmitUpdateForm(user)">
+            <fieldset>
+              <div class="legend">Personal information</div>
+              <div class="input-container">
+                <input type="text" id="fullname" name="fullname" required [(ngModel)]="user.fullname" #fullname="ngModel">
+                <span class="floating-label">Full name</span>
+                <div *ngIf="fullname.invalid && (fullname.dirty || fullname.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="fullname.errors.required">
+                    Name is required.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="legend">Contact information</div>
+              <div class="input-container">
+                <input type="email" name="email" required [(ngModel)]="user.email" #email="ngModel">
+                <span class="floating-label">Email</span>
+                <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="email.errors.required">
+                    Email is required.
+                  </div>
+                </div>
+              </div>
+              <div class="input-container">
+                <input type="text" name="phoneNumber" required [(ngModel)]="user.phoneNumber" #phoneNumber="ngModel">
+                <span class="floating-label">Phone number</span>
+                <div *ngIf="phoneNumber.invalid && (phoneNumber.dirty || phoneNumber.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="phoneNumber.errors.required">
+                      Phone number is required.
+                  </div>
+                </div>
+              </div>
+  
+            </fieldset>
+  
+            <fieldset>
+              <div class="legend">Password</div>
+              <div class="input-container">
+                <input type="password" name="password" required [(ngModel)]="user.password" #password="ngModel">
+                <span class="floating-label">Password</span>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                    class="alert alert-danger">
+                  <div *ngIf="password.errors.required">
+                      Password is required.
+                  </div>
+                </div>
+              </div>
+            </fieldset>
+  
+            <fieldset>
+              <div class="legend">Rsvp</div>
+              <div class="input-container">
+                  <div *ngFor="let rsvp of rsvpOptions">
+                      <label>
+                      <input type="radio" name="rsvp" [(ngModel)]="user.rsvp" 
+                      [value]="rsvp.value">
+                      {{rsvp.name}}
+                      </label>
+                  </div>
+              </div>
+              <div class="input-container">
+                <textarea rows="6" name="comment" [(ngModel)]="user.comment"></textarea>
+                <span class="floating-label">Something you'd like to add?</span>
+              </div>
+            </fieldset>
+            <fieldset>
+              <div class="input-container">
+                <label class="checkbox-container">
+                  <input type="checkbox" name="subscribe"  [(ngModel)]="user.subscribe">
+                  Let me know about future beerups!
+                </label>
+                <label class="checkbox-container">
+                  <input type="checkbox" name="reminder"  [(ngModel)]="user.reminder">
+                  Remind me one day before this beerup!
+                </label>
+              </div>
+            </fieldset>
+            <div class="submit-button-container">
+                <button type="submit" [disabled]="!f.valid">Update</button>
+            </div>
+        </form>
+        <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        <div *ngIf="updated == true">
+          <h2>You successfully changed your profile information!</h2>
+        </div>
+  
+        <alert></alert>
+        
+    </div>  
+  
+  </main>
+  
+  
+  
